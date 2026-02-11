@@ -267,6 +267,16 @@ def test_authentication() -> bool:
         
         return False
         
+        return False
+        
     except Exception as e:
         logger.error(f"Authentication test failed: {e}")
         return False
+
+
+def setup_credentials():
+    """Interactive setup for YouTube credentials."""
+    try:
+        authenticate_interactive()
+    except YouTubeAuthError:
+        logger.error("Setup failed.")

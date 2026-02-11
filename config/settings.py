@@ -24,6 +24,10 @@ AUDIO_DIR = OUTPUT_DIR / "audio"
 THUMBNAILS_DIR = OUTPUT_DIR / "thumbnails"
 DATABASE_DIR = BASE_DIR / "database"
 
+# YouTube Auth Paths
+YOUTUBE_CLIENT_SECRETS = BASE_DIR / "client_secrets.json"
+YOUTUBE_TOKEN_PATH = BASE_DIR / "token.json"
+
 # Create directories
 for d in [ASSETS_DIR, FONTS_DIR, BACKGROUNDS_DIR, AMBIENT_DIR,
           OUTPUT_DIR, VIDEOS_DIR, AUDIO_DIR, THUMBNAILS_DIR, DATABASE_DIR]:

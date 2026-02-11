@@ -68,6 +68,7 @@ jobs:
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: 'pNInz6obpgDQGcFmaJgB'
           APPROVAL_REQUIRED: 'false'
           ENABLE_KEN_BURNS: 'true'
           IMAGEMAGICK_BINARY: /usr/bin/convert

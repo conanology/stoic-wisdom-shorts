@@ -1,0 +1,98 @@
+name: Daily Stoic Wisdom
+
+on:
+  schedule:
+    - cron: '0 9,15,21 * * *'  # 9am, 3pm, 9pm UTC (approx 3x/day)
+
+  workflow_dispatch:
+    inputs:
+      count:
+        description: 'Number of videos to generate'
+        required: false
+        default: '1'
+        type: string
+      test_mode:
+        description: 'Upload as private (test mode)'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg imagemagick
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Restore YouTube credentials
+        run: |
+          echo '${{ secrets.YOUTUBE_TOKEN_JSON }}' > token.json
+          echo '${{ secrets.YOUTUBE_CLIENT_SECRETS }}' > client_secrets.json
+
+      - name: Download fonts
+        run: |
+          mkdir -p assets/fonts
+          if [ ! -f assets/fonts/PlayfairDisplay-Bold.ttf ]; then
+            echo "Downloading Playfair Display Bold..."
+            curl -sL "https://github.com/google/fonts/raw/main/ofl/playfairdisplay/PlayfairDisplay%5Bwght%5D.ttf" -o /tmp/playfair.ttf
+            cp /tmp/playfair.ttf assets/fonts/PlayfairDisplay-Bold.ttf
+          fi
+          if [ ! -f assets/fonts/Lato-Italic.ttf ]; then
+            echo "Downloading Lato..."
+            curl -sL "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Italic.ttf" -o assets/fonts/Lato-Italic.ttf
+            curl -sL "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf" -o assets/fonts/Lato-Regular.ttf
+          fi
+
+      - name: Generate and upload
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          APPROVAL_REQUIRED: 'false'
+          ENABLE_KEN_BURNS: 'true'
+          IMAGEMAGICK_BINARY: /usr/bin/convert
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          COUNT="${{ github.event.inputs.count || '1' }}"
+          TEST_FLAG=""
+          if [ "${{ github.event.inputs.test_mode }}" = "true" ]; then
+            TEST_FLAG="--test"
+          fi
+
+          if [ "$COUNT" -gt 1 ]; then
+            python main.py batch --count "$COUNT" --upload $TEST_FLAG
+          else
+            python main.py auto $TEST_FLAG
+          fi
+
+      - name: Commit database progress
+        if: always()
+        run: |
+          rm -f client_secrets.json token.json
+          rm -rf outputs/videos/* outputs/audio/* assets/downloaded_bg/*
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add database/stoic_wisdom.db
+          git diff --cached --quiet || git commit -m "Update Stoic Wisdom progress [skip ci]"
+          git push

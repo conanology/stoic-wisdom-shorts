@@ -1,0 +1,124 @@
+{
+    "philosophers": [
+        {
+            "key": "marcus_aurelius",
+            "name": "Marcus Aurelius",
+            "era": "121–180 AD",
+            "title": "Roman Emperor & Stoic Philosopher",
+            "tradition": "Stoicism",
+            "notable_work": "Meditations"
+        },
+        {
+            "key": "seneca",
+            "name": "Seneca",
+            "era": "4 BC–65 AD",
+            "title": "Roman Statesman & Philosopher",
+            "tradition": "Stoicism",
+            "notable_work": "Letters from a Stoic"
+        },
+        {
+            "key": "epictetus",
+            "name": "Epictetus",
+            "era": "50–135 AD",
+            "title": "Greek Stoic Philosopher",
+            "tradition": "Stoicism",
+            "notable_work": "Discourses"
+        },
+        {
+            "key": "lao_tzu",
+            "name": "Lao Tzu",
+            "era": "6th Century BC",
+            "title": "Chinese Philosopher",
+            "tradition": "Taoism",
+            "notable_work": "Tao Te Ching"
+        },
+        {
+            "key": "sun_tzu",
+            "name": "Sun Tzu",
+            "era": "544–496 BC",
+            "title": "Chinese Military Strategist",
+            "tradition": "Military Philosophy",
+            "notable_work": "The Art of War"
+        },
+        {
+            "key": "confucius",
+            "name": "Confucius",
+            "era": "551–479 BC",
+            "title": "Chinese Philosopher",
+            "tradition": "Confucianism",
+            "notable_work": "Analects"
+        },
+        {
+            "key": "socrates",
+            "name": "Socrates",
+            "era": "470–399 BC",
+            "title": "Greek Philosopher",
+            "tradition": "Western Philosophy",
+            "notable_work": "Socratic Method"
+        },
+        {
+            "key": "aristotle",
+            "name": "Aristotle",
+            "era": "384–322 BC",
+            "title": "Greek Philosopher & Polymath",
+            "tradition": "Aristotelianism",
+            "notable_work": "Nicomachean Ethics"
+        },
+        {
+            "key": "plato",
+            "name": "Plato",
+            "era": "428–348 BC",
+            "title": "Greek Philosopher",
+            "tradition": "Platonism",
+            "notable_work": "The Republic"
+        },
+        {
+            "key": "nietzsche",
+            "name": "Friedrich Nietzsche",
+            "era": "1844–1900",
+            "title": "German Philosopher",
+            "tradition": "Existentialism",
+            "notable_work": "Thus Spoke Zarathustra"
+        },
+        {
+            "key": "musashi",
+            "name": "Miyamoto Musashi",
+            "era": "1584–1645",
+            "title": "Japanese Swordsman & Philosopher",
+            "tradition": "Bushido",
+            "notable_work": "The Book of Five Rings"
+        },
+        {
+            "key": "rumi",
+            "name": "Rumi",
+            "era": "1207–1273",
+            "title": "Persian Poet & Philosopher",
+            "tradition": "Sufism",
+            "notable_work": "Masnavi"
+        },
+        {
+            "key": "buddha",
+            "name": "Buddha",
+            "era": "563–483 BC",
+            "title": "Spiritual Teacher",
+            "tradition": "Buddhism",
+            "notable_work": "Dhammapada"
+        },
+        {
+            "key": "heraclitus",
+            "name": "Heraclitus",
+            "era": "535–475 BC",
+            "title": "Greek Philosopher",
+            "tradition": "Pre-Socratic",
+            "notable_work": "On Nature"
+        },
+        {
+            "key": "schopenhauer",
+            "name": "Arthur Schopenhauer",
+            "era": "1788–1860",
+            "title": "German Philosopher",
+            "tradition": "Pessimism",
+            "notable_work": "The World as Will and Representation"
+        }
+    ]
+}

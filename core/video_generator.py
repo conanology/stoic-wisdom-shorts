@@ -65,6 +65,8 @@ from core.text_renderer import (
     create_hook_clip,
     create_reflection_clip,
     create_cta_clip,
+    create_vignette_overlay,
+    create_decorative_quote_marks,
 )
 from core.tts_engine import TTSEngine
 from core.audio_processor import get_ambient_sound, normalize_audio
@@ -156,6 +158,11 @@ def generate_stoic_short(
     layers = [graded_bg]
     fade_in = style.text_fade_in
 
+    # — Vignette overlay (dark edges, transparent center) —
+    vignette = create_vignette_overlay(duration=total_duration, style=style)
+    vignette = vignette.set_start(0)
+    layers.append(vignette)
+
     # — ACT 1: Hook intro text (philosopher name + metadata) —
     hook_start = timing["hook_start"]
     hook_end = timing["hook_end"]
@@ -193,7 +200,17 @@ def generate_stoic_short(
     quote_clip = quote_clip.fx(crossfadeout, 0.8)
     layers.append(quote_clip)
 
-    # Decorative line between quote and author
+    # Decorative quote marks framing the quote (visible during Act 2)
+    quote_marks = create_decorative_quote_marks(
+        duration=quote_visual_duration,
+        style=style,
+    )
+    quote_marks = quote_marks.set_start(quote_start - 0.2)
+    quote_marks = quote_marks.fx(crossfadein, fade_in + 0.2)
+    quote_marks = quote_marks.fx(crossfadeout, 0.8)
+    layers.append(quote_marks)
+
+    # Ornamental decorative line between quote and author
     line_clip = create_decorative_line(
         duration=quote_visual_duration,
         style=style,

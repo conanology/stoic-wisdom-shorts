@@ -34,6 +34,12 @@ from config.settings import (
     SHADOW_COLOR,
     SHADOW_OFFSET,
     SHADOW_OPACITY,
+    GLOW_RADIUS,
+    GLOW_OPACITY,
+    VIGNETTE_STRENGTH,
+    QUOTE_MARK_SIZE,
+    QUOTE_MARK_COLOR,
+    QUOTE_MARK_OPACITY,
 )
 
 
@@ -85,6 +91,18 @@ class StyleConfig:
     text_fade_in: float = TEXT_FADE_IN_SECONDS
     text_fade_out: float = TEXT_FADE_OUT_SECONDS
     video_fade: float = VIDEO_FADE_SECONDS
+
+    # Glow effect
+    glow_radius: int = GLOW_RADIUS
+    glow_opacity: float = GLOW_OPACITY
+
+    # Vignette
+    vignette_strength: float = VIGNETTE_STRENGTH
+
+    # Decorative quote marks
+    quote_mark_size: int = QUOTE_MARK_SIZE
+    quote_mark_color: str = QUOTE_MARK_COLOR
+    quote_mark_opacity: float = QUOTE_MARK_OPACITY
 
 
 # Default instance

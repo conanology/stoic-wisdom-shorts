@@ -54,6 +54,7 @@ MAX_DURATION = 58
 # Primary: Playfair Display Bold (elegant serif for quotes)
 # Secondary: Lato (clean sans-serif for attribution/branding)
 QUOTE_FONT_PATH = str(FONTS_DIR / "PlayfairDisplay-Bold.ttf")
+CINZEL_FONT_PATH = str(FONTS_DIR / "Cinzel-Bold.ttf")
 AUTHOR_FONT_PATH = str(FONTS_DIR / "Lato-Italic.ttf")
 BRANDING_FONT_PATH = str(FONTS_DIR / "Lato-Regular.ttf")
 
@@ -61,24 +62,36 @@ BRANDING_FONT_PATH = str(FONTS_DIR / "Lato-Regular.ttf")
 FALLBACK_FONT = "arial.ttf"
 
 # ══════════════════════════════════════════════════════════════════════
-# Color Scheme — Dark, Premium, Philosophical
+# Color Scheme — Dark, Premium, Cinematic
 # ══════════════════════════════════════════════════════════════════════
-QUOTE_COLOR = "#F5E6D3"          # warm cream for quotes
-AUTHOR_COLOR = "#D4AF37"         # muted gold for author name
+QUOTE_COLOR = "#FFFFFF"          # pure white for maximum contrast
+AUTHOR_COLOR = "#E8C547"         # vibrant gold for author name
 BRANDING_COLOR = "#8899AA"       # subtle gray-blue for branding
 FONT_COLOR = QUOTE_COLOR         # alias for compatibility
 
 # Background
-BACKGROUND_BRIGHTNESS = 0.35     # very dark
+BACKGROUND_BRIGHTNESS = 0.45     # slightly brighter to show footage
 BACKGROUND_TINT = (8, 6, 18)    # deep navy/purple tint
-BACKGROUND_TINT_OPACITY = 0.45
+BACKGROUND_TINT_OPACITY = 0.30   # let more scene color through
 
 # Text effects
 STROKE_COLOR = "#000000"
-STROKE_WIDTH = 2
+STROKE_WIDTH = 3
 SHADOW_COLOR = "#000000"
-SHADOW_OFFSET = (2, 2)
-SHADOW_OPACITY = 0.7
+SHADOW_OFFSET = (3, 3)
+SHADOW_OPACITY = 0.85
+
+# Glow effect (luminous halo behind text)
+GLOW_RADIUS = 12
+GLOW_OPACITY = 0.35
+
+# Vignette (dark edges spotlight)
+VIGNETTE_STRENGTH = 0.6
+
+# Decorative quotation marks
+QUOTE_MARK_SIZE = 100
+QUOTE_MARK_COLOR = "#D4AF37"
+QUOTE_MARK_OPACITY = 0.20
 
 # ══════════════════════════════════════════════════════════════════════
 # Text Layout
@@ -108,13 +121,13 @@ BRANDING_Y_RATIO = 0.92       # small branding near bottom
 # ══════════════════════════════════════════════════════════════════════
 # Timing & Transitions
 # ══════════════════════════════════════════════════════════════════════
-TEXT_FADE_IN_SECONDS = 0.6
-TEXT_FADE_OUT_SECONDS = 0.5
+TEXT_FADE_IN_SECONDS = 0.8
+TEXT_FADE_OUT_SECONDS = 0.6
 VIDEO_FADE_SECONDS = 0.8
 AYAH_PADDING_SECONDS = 0.5   # kept for compatibility, padding after TTS
 
 # Ken Burns zoom
-KEN_BURNS_ZOOM = 1.06
+KEN_BURNS_ZOOM = 1.10
 ENABLE_KEN_BURNS = os.getenv("ENABLE_KEN_BURNS", "true").lower() == "true"
 
 # ══════════════════════════════════════════════════════════════════════

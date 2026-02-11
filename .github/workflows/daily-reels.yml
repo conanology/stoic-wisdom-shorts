@@ -63,6 +63,10 @@ jobs:
             curl -sL "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Italic.ttf" -o assets/fonts/Lato-Italic.ttf
             curl -sL "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf" -o assets/fonts/Lato-Regular.ttf
           fi
+          if [ ! -f assets/fonts/Cinzel-Bold.ttf ]; then
+            echo "Downloading Cinzel..."
+            curl -sL "https://github.com/google/fonts/raw/main/ofl/cinzel/Cinzel%5Bwght%5D.ttf" -o assets/fonts/Cinzel-Bold.ttf
+          fi
 
       - name: Generate and upload
         env:
